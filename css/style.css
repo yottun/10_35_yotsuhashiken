@@ -1,0 +1,33 @@
+.PC_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #dd5;
+  padding: 10px;
+}
+.PC_header .logo {
+  background: #dd5;
+  color: #aaa;
+}
+.PC_header ul {
+  background: #dd5;
+}
+.PC_header ul li {
+  list-style: none;
+}
+.PC_header ul li a {
+  text-decoration: none;
+}
+
+/* 追記 */
+.ui-autocomplete {
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 20px;
+}
+.td,
+.th
+{
+  width: 10px;
+}
