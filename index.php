@@ -110,28 +110,10 @@ for ($i = 1; $i <= 10; $i++) {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input id="autocomplete" class="value search foodName" type="text"></td>
-                    <td><input class="value g" type="number">g</td>
-                    <td><input class="value enerc_kcal" type="text" disabled='disabled'></td>
-                    <td><input class="value protein" type="text" disabled='disabled'></td>
-                    <td><input class="value lipid" type="text" disabled='disabled'></td>
-                    <td><input class="value carbohydrate" type="text" disabled='disabled'></td>
-                    <td><input class="value fibtg" type="text" disabled='disabled'></td>
-                    <td><input class="value ca" type="text" disabled='disabled'></td>
-                    <td><input class="value fe" type="text" disabled='disabled'></td>
-                    <td><input class="value vita_rae" type="text" disabled='disabled'></td>
-                    <td><input class="value vitd" type="text" disabled='disabled'></td>
-                    <td><input class="value vitk" type="text" disabled='disabled'></td>
-                    <td><input class="value thiahcl" type="text" disabled='disabled'></td>
-                    <td><input class="value ribf" type="text" disabled='disabled'></td>
-                    <td><input class="value vitc" type="text" disabled='disabled'></td>
-                    <td><input class="value nacl_eq" type="text" disabled='disabled'></td>
-                </tr>
                 <?= $output ?>
                 <tr>
                     <td>合計</td>
-                    <td><input class="value " type="text">g</td>
+                    <td><input class="value result" type="text">g</td>
                     <td><input class="value " type="text"></td>
                     <td><input class="value " type="text"></td>
                     <td><input class="value " type="text"></td>
