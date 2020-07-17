@@ -1,10 +1,12 @@
 <?php
-// session_start();
+session_start();
 include('functions.php');
-// check_session_id();
+check_session_id();
 
 $output = "";
 
+
+// 入力欄の数、iの数を変更したらstyle.jsのiも変更が必要
 for ($i = 1; $i <= 10; $i++) {
     $output .= "<tr>";
     // $output .= "<td><input id='autocomplete" . $i . "' class='value search foodName" . $i . "' type='text'></td>";
@@ -110,6 +112,7 @@ for ($i = 1; $i <= 10; $i++) {
                 </tr>
             </thead>
             <tbody>
+                <!-- 入力欄の作成、上のphpの値を変更して数を変更 -->
                 <?= $output ?>
                 <tr>
                     <td>合計</td>

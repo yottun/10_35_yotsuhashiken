@@ -13,7 +13,7 @@ $(function () {
 
     //     // 参考URLhttp://arikalog.hateblo.jp/entry/2015/12/25/012829
 
-
+    // セレクトした項目をキーワードに数値を引っ張ってくるよう
     for (let i = 1; i <= 10; i++){
         $(".g" + i).change(function () {
             let food_name = $("#autocomplete" + i).val();
