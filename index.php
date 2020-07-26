@@ -1,7 +1,7 @@
 <?php
-session_start();
+// session_start();
 include('functions.php');
-check_session_id();
+// check_session_id();
 
 $output = "";
 

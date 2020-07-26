@@ -1,9 +1,32 @@
 
 $(function () {
 
+    // for (let i = 1; i <= 10; i++){
+
+    //     $('#autocomplete' + i).on('keyup', function () {
+    //         console.log($(this).val());
+    //         const searchWord = $(this).val();
+    //         const requestUrl = 'ajax_get.php';
+    //         axios.get(`${requestUrl}?searchword=${searchWord}`)
+    //         .then(function (response) {
+    //             // console.log(response);
+    //             // console.log(response.data[0].todo);
+    //             // let arr = [];
+    //             // for (let i = 0; i < response.data.length; i++) {
+    //             //     let a = `<tr><td>${response.data[i].foodName}</td><td>${response.data[i].foodNum}</td></tr>`;
+    //                 // arr.push(a);
+    //                 // console.log(response.data[i].foodName);
+    //                 // console.log(arr);
+    //                 // $('tbody').html(arr);
+    //             }
+    //         });
+    //     });
+    // };
+
+
 
     // フリーワード検索用
-    for (let i = 1; i <= 10; i++){
+    for (let i = 1; i <= 20; i++) {
         $('#autocomplete' + i).autocomplete({
             source: foodList1,
             autoFocus: true,
@@ -14,7 +37,7 @@ $(function () {
     //     // 参考URLhttp://arikalog.hateblo.jp/entry/2015/12/25/012829
 
     // セレクトした項目をキーワードに数値を引っ張ってくるよう
-    for (let i = 1; i <= 10; i++){
+    for (let i = 1; i <= 20; i++) {
         $(".g" + i).change(function () {
             let food_name = $("#autocomplete" + i).val();
             console.log(i);
