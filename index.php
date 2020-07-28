@@ -7,13 +7,13 @@ $output = "";
 
 
 // 入力欄の数、iの数を変更したらstyle.jsのiも変更が必要
-for ($i = 1; $i <= 10; $i++) {
+for ($i = 0; $i < 5; $i++) {
     $output .= "<tr>";
     // $output .= "<td><input id='autocomplete" . $i . "' class='value search foodName" . $i . "' type='text'></td>";
     $output .= "<td><input id='autocomplete{$i}' class='value search foodName{$i}' type='text'></td>";
-    $output .= "<td><input class='value g{$i}' type='number'>g</td>";
-    $output .= "<td><input class='value protein{$i}' type='text' disabled='disabled'></td>";
+    $output .= "<td><input class='value g{$i} weight' type='number'>g</td>";
     $output .= "<td><input class='value enerc_kcal{$i}' type='text' disabled='disabled'></td>";
+    $output .= "<td><input class='value protein{$i}' type='text' disabled='disabled'></td>";
     $output .= "<td><input class='value lipid{$i}' type='text' disabled='disabled'></td>";
     $output .= "<td><input class='value carbohydrate{$i}' type='text' disabled='disabled'></td>";
     $output .= "<td><input class='value fibtg{$i}' type='text' disabled='disabled'></td>";
@@ -114,24 +114,26 @@ for ($i = 1; $i <= 10; $i++) {
             <tbody>
                 <!-- 入力欄の作成、上のphpの値を変更して数を変更 -->
                 <?= $output ?>
-                <tr>
-                    <td>合計</td>
-                    <td><input class="value result" type="text">g</td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                    <td><input class="value " type="text"></td>
-                </tr>
+                <form action="">
+                    <tr>
+                        <td>合計</td>
+                        <td><input class="value g_result" type="text" disabled='disabled'>g</td>
+                        <td><input class="value enerc_kcal_result" type="text" disabled='disabled'></td>
+                        <td><input class="value protein_result" type="text" disabled='disabled'></td>
+                        <td><input class="value lipid_result" type="text" disabled='disabled'></td>
+                        <td><input class="value carbohydrate_result" type="text" disabled='disabled'></td>
+                        <td><input class="value fibtg_result" type="text" disabled='disabled'></td>
+                        <td><input class="value ca_result" type="text" disabled='disabled'></td>
+                        <td><input class="value fe_result" type="text" disabled='disabled'></td>
+                        <td><input class="value vita_rae_result" type="text" disabled='disabled'></td>
+                        <td><input class="value vitd_result" type="text" disabled='disabled'></td>
+                        <td><input class="value vitk_result" type="text" disabled='disabled'></td>
+                        <td><input class="value thiahcl_result" type="text" disabled='disabled'></td>
+                        <td><input class="value ribf_result" type="text" disabled='disabled'></td>
+                        <td><input class="value vitc_result" type="text" disabled='disabled'></td>
+                        <td><input class="value nacl_eq_result" type="text" disabled='disabled'></td>
+                    </tr>
+                </form>
             </tbody>
         </table>
     </div>
