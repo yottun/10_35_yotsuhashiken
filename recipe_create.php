@@ -2,8 +2,8 @@
 session_start();
 include('functions.php');
 check_session_id();
-// var_dump($_POST);
-// exit();
+var_dump($_POST);
+exit();
 
 // 項目入力のチェック
 // 値が存在しないor空で送信されてきた場合はNGにする
@@ -23,9 +23,9 @@ if (
   $howto = $_POST['howto'];
   // $foodName0 = $_POST['foodName0'];
 
-for ($i = 0; $i < 5; $i++){
-  $foodName + $i = $_POST['foodName' + $i];
-}
+// for ($i = 0; $i < 5; $i++){
+//   $foodName + $i = $_POST['foodName' + $i];
+// }
 
 var_dump($_POST);
 exit();
@@ -81,6 +81,6 @@ if ($status == false) {
   echo json_encode(["error_msg" => "{$error[2]}"]);
   exit();
 } else {
-  header('Location:recipe.php');
+  header('Location:recipe_read.php');
   exit();
 }

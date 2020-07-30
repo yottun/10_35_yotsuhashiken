@@ -92,16 +92,16 @@ for ($i = 0; $i < 5; $i++) {
             <input id="autocomplete" type="search" placeholder="フリーワード" size="50" maxlengh="50" /> -->
             <!-- <button class="choice">選択</button> -->
             <div>
-                <button class="1">エネルギー</button>
-                <button class="2"></button>
-                <button class="3"></button>
-                <button class="4"></button>
-                <button class="5"></button>
-                <button class="6"></button>
-                <button class="7"></button>
-                <button class="8"></button>
-                <button class="9"></button>
-                <button class="10"></button>
+                <div class="1">エネルギー</div>
+                <div class="2"></div>
+                <div class="3"></div>
+                <div class="4"></div>
+                <div class="5"></div>
+                <div class="6"></div>
+                <div class="7"></div>
+                <div class="8"></div>
+                <div class="9"></div>
+                <div class="10"></div>
             </div>
             <table>
                 <thead>

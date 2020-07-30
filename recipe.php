@@ -95,88 +95,93 @@ $nacl_eq_result = $_POST['nacl_eq_result'];
             <li><a href="recipe.php">レシピ表示</a></li>
         </ul>
     </header>
-    <h2>料理名:<?= $recipename ?></h2>
-    <div class="recipe_img1"></div>
-    <img src="img/DSC00021.JPG" alt="" width="60%" height=60%>
-    <div class="howto2">
-        <div class="table1">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>材料</th>
-                        <th>分量</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?= $foodName0 ?></td>
-                        <td><?= $g0 ?>g</td>
-                    </tr>
-                    <tr>
-                        <td><?= $foodName1 ?></td>
-                        <td><?= $g1 ?>g</td>
-                    </tr>
-                    <tr>
-                        <td><?= $foodName2 ?></td>
-                        <td><?= $g2 ?>g</td>
-                    </tr>
-                    <tr>
-                        <td><?= $foodName3 ?></td>
-                        <td><?= $g3 ?>g</td>
-                    </tr>
-                    <tr>
-                        <td><?= $foodName4 ?></td>
-                        <td><?= $g4 ?>g</td>
-                    </tr>
-                    <tr>
-                        <td>合計</td>
-                        <td><?= $g_result ?>g</td>
-                    </tr>
-                </tbody>
-            </table>
+    <form action="recipe_create.php" method="POST">
+        <input type="text" name="category"><?= $category ?>
+        <div>料理名:
+            <h2 name="recipename"><?= $recipename ?></h2>
         </div>
-        <div class="table2">
-            <h3>作り方</h3>
-            <p><?= $howto ?></p>
+        <div class="recipe_img1"></div>
+        <img src="img/DSC00021.JPG" alt="" width="60%" height=60%>
+        <div class="howto2">
+            <div class="table1">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>材料</th>
+                            <th>分量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?= $foodName0 ?></td>
+                            <td><?= $g0 ?>g</td>
+                        </tr>
+                        <tr>
+                            <td><?= $foodName1 ?></td>
+                            <td><?= $g1 ?>g</td>
+                        </tr>
+                        <tr>
+                            <td><?= $foodName2 ?></td>
+                            <td><?= $g2 ?>g</td>
+                        </tr>
+                        <tr>
+                            <td><?= $foodName3 ?></td>
+                            <td><?= $g3 ?>g</td>
+                        </tr>
+                        <tr>
+                            <td><?= $foodName4 ?></td>
+                            <td><?= $g4 ?>g</td>
+                        </tr>
+                        <tr>
+                            <td>合計</td>
+                            <td><?= $g_result ?>g</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table2">
+                <h3>作り方</h3>
+                <p name="howto"><?= $howto ?></p>
+            </div>
         </div>
-    </div>
-    <h3>栄養価</h3>
-    <table border="1">
-        <tr>
-            <th>エネルギー</th>
-            <th>たんぱく質</th>
-            <th>脂質</th>
-            <th>炭水化物</th>
-            <th>食物繊維</th>
-            <th>カルシウム</th>
-            <th>鉄</th>
-            <th>レチノール当量</th>
-            <th>ビタミンD</th>
-            <th>ビタミンK</th>
-            <th>ビタミンB1</th>
-            <th>ビタミンB2</th>
-            <th>ビタミンC</th>
-            <th>食塩</th>
-        </tr>
-        <tr>
-            <td><?= $enerc_kcal_result ?>kcal</td>
-            <td><?= $protein_result ?>g</td>
-            <td><?= $lipid_result ?>g</td>
-            <td><?= $carbohydrate_result ?>g</td>
-            <td><?= $fibtg_result ?>g</td>
-            <td><?= $ca_result ?>mg</td>
-            <td><?= $fe_result ?>mg</td>
-            <td><?= $vita_rae_result ?>μg</td>
-            <td><?= $vitd_result ?>μg</td>
-            <td><?= $vitk_result ?>μg</td>
-            <td><?= $thiahcl_result ?>mg</td>
-            <td><?= $ribf_result ?>mg</td>
-            <td><?= $vitc_result ?>mg</td>
-            <td><?= $nacl_eq_result ?>g</td>
-        </tr>
+        <h3>栄養価</h3>
+        <table border="1">
+            <tr>
+                <th>エネルギー</th>
+                <th>たんぱく質</th>
+                <th>脂質</th>
+                <th>炭水化物</th>
+                <th>食物繊維</th>
+                <th>カルシウム</th>
+                <th>鉄</th>
+                <th>レチノール当量</th>
+                <th>ビタミンD</th>
+                <th>ビタミンK</th>
+                <th>ビタミンB1</th>
+                <th>ビタミンB2</th>
+                <th>ビタミンC</th>
+                <th>食塩</th>
+            </tr>
+            <tr>
+                <td><?= $enerc_kcal_result ?>kcal</td>
+                <td><?= $protein_result ?>g</td>
+                <td><?= $lipid_result ?>g</td>
+                <td><?= $carbohydrate_result ?>g</td>
+                <td><?= $fibtg_result ?>g</td>
+                <td><?= $ca_result ?>mg</td>
+                <td><?= $fe_result ?>mg</td>
+                <td><?= $vita_rae_result ?>μg</td>
+                <td><?= $vitd_result ?>μg</td>
+                <td><?= $vitk_result ?>μg</td>
+                <td><?= $thiahcl_result ?>mg</td>
+                <td><?= $ribf_result ?>mg</td>
+                <td><?= $vitc_result ?>mg</td>
+                <td><?= $nacl_eq_result ?>g</td>
+            </tr>
 
-    </table>
-
+        </table>
+        <button>送信</button>
+    </form>
 
 </body>
 
