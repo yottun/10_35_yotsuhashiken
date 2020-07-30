@@ -1,3 +1,77 @@
+<?php
+session_start();
+// var_dump($_SESSION);
+// exit();
+include('functions.php');
+check_session_id();
+// var_dump($_POST);
+// exit();
+
+// 項目入力のチェック
+// 値が存在しないor空で送信されてきた場合はNGにする
+if (
+    !isset($_POST['recipename']) || $_POST['recipename'] == '' ||
+    !isset($_POST['category']) || $_POST['category'] == '' ||
+    !isset($_POST['howto']) || $_POST['howto'] == '' ||
+    !isset($_POST['foodName0']) || $_POST['foodName0'] == '' ||
+    // !isset($_POST['foodName1']) || $_POST['foodName1'] == '' ||
+    // !isset($_POST['foodName2']) || $_POST['foodName2'] == '' ||
+    // !isset($_POST['foodName3']) || $_POST['foodName3'] == '' ||
+    // !isset($_POST['foodName4']) || $_POST['foodName4'] == '' ||
+    !isset($_POST['g0']) || $_POST['g0'] == '' ||
+    // !isset($_POST['g1']) || $_POST['g1'] == '' ||
+    // !isset($_POST['g2']) || $_POST['g2'] == '' ||
+    // !isset($_POST['g3']) || $_POST['g3'] == '' ||
+    // !isset($_POST['g4']) || $_POST['g4'] == '' ||
+    !isset($_POST['howto']) || $_POST['howto'] == ''
+) {
+    echo json_encode(["error_msg" => "no input"]);
+    exit();
+}
+
+// 受け取ったデータを変数に入れる
+$recipename = $_POST['recipename'];
+$category = $_POST['category'];
+$howto = $_POST['howto'];
+$foodName0 = $_POST['foodName0'];
+$foodName1 = $_POST['foodName1'];
+$foodName2 = $_POST['foodName2'];
+$foodName3 = $_POST['foodName3'];
+$foodName4 = $_POST['foodName4'];
+$g0 = $_POST['g0'];
+$g1 = $_POST['g1'];
+$g2 = $_POST['g2'];
+$g3 = $_POST['g3'];
+$g4 = $_POST['g4'];
+$g_result = $_POST['g_result'];
+$enerc_kcal_result = $_POST['enerc_kcal_result'];
+$protein_result = $_POST['protein_result'];
+$lipid_result = $_POST['lipid_result'];
+$carbohydrate_result = $_POST['carbohydrate_result'];
+$fibtg_result = $_POST['fibtg_result'];
+$ca_result = $_POST['ca_result'];
+$fe_result = $_POST['fe_result'];
+$vita_rae_result = $_POST['vita_rae_result'];
+$vitd_result = $_POST['vitd_result'];
+$vitk_result = $_POST['vitk_result'];
+$thiahcl_result = $_POST['thiahcl_result'];
+$ribf_result = $_POST['ribf_result'];
+$vitc_result = $_POST['vitc_result'];
+$nacl_eq_result = $_POST['nacl_eq_result'];
+
+// for ($i = 0; $i < 5; $i++) {
+//     $foodName . $i = $_POST[${"foodName{$i}"}];
+//     $g . $i = $_POST[${"g{$i}"}];
+// }
+
+// var_dump($_POST);
+// exit();
+
+
+
+?>
+
+
 <!doctype html>
 <html lang="ja">
 
@@ -21,45 +95,49 @@
             <li><a href="recipe.php">レシピ表示</a></li>
         </ul>
     </header>
-    <h2>にんじんしりしり</h2>
+    <h2>料理名:<?= $recipename ?></h2>
     <div class="recipe_img1"></div>
     <img src="img/DSC00021.JPG" alt="" width="60%" height=60%>
     <div class="howto2">
         <div class="table1">
             <table border="1">
-                <tr>
-                    <th>材料</th>
-                    <th>分量</th>
-                </tr>
-                <tr>
-                    <td>にんじん</td>
-                    <td>80g</td>
-                </tr>
-                <tr>
-                    <td>卵</td>
-                    <td>50g</td>
-                </tr>
-                <tr>
-                    <td>ツナ缶</td>
-                    <td>40g</td>
-                </tr>
-                <tr>
-                    <td>みりん</td>
-                    <td>6g</td>
-                </tr>
-                <tr>
-                    <td>濃口醤油</td>
-                    <td>6g</td>
-                </tr>
-                <tr>
-                    <td>酒</td>
-                    <td>5g</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>材料</th>
+                        <th>分量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= $foodName0 ?></td>
+                        <td><?= $g0 ?>g</td>
+                    </tr>
+                    <tr>
+                        <td><?= $foodName1 ?></td>
+                        <td><?= $g1 ?>g</td>
+                    </tr>
+                    <tr>
+                        <td><?= $foodName2 ?></td>
+                        <td><?= $g2 ?>g</td>
+                    </tr>
+                    <tr>
+                        <td><?= $foodName3 ?></td>
+                        <td><?= $g3 ?>g</td>
+                    </tr>
+                    <tr>
+                        <td><?= $foodName4 ?></td>
+                        <td><?= $g4 ?>g</td>
+                    </tr>
+                    <tr>
+                        <td>合計</td>
+                        <td><?= $g_result ?>g</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="table2">
             <h3>作り方</h3>
-            <p>1.にんじんを千切りにする<br>2.フライパンに人参を入れ、しんなりするまで炒める。<br>3.ツナを入れてさらに炒める。<br>4.調味調を入れて味を整える。<br>5.卵を入れ、全体を混ぜて完成！</p>
+            <p><?= $howto ?></p>
         </div>
     </div>
     <h3>栄養価</h3>
@@ -81,20 +159,20 @@
             <th>食塩</th>
         </tr>
         <tr>
-            <td>100kcal</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>3.0g</td>
-            <td>1.0g</td>
+            <td><?= $enerc_kcal_result ?>kcal</td>
+            <td><?= $protein_result ?>g</td>
+            <td><?= $lipid_result ?>g</td>
+            <td><?= $carbohydrate_result ?>g</td>
+            <td><?= $fibtg_result ?>g</td>
+            <td><?= $ca_result ?>mg</td>
+            <td><?= $fe_result ?>mg</td>
+            <td><?= $vita_rae_result ?>μg</td>
+            <td><?= $vitd_result ?>μg</td>
+            <td><?= $vitk_result ?>μg</td>
+            <td><?= $thiahcl_result ?>mg</td>
+            <td><?= $ribf_result ?>mg</td>
+            <td><?= $vitc_result ?>mg</td>
+            <td><?= $nacl_eq_result ?>g</td>
         </tr>
 
     </table>

@@ -1,9 +1,9 @@
 <?php
 session_start();
-// var_dump($_SESSION);
-// exit();
 include('functions.php');
 check_session_id();
+// var_dump($_POST);
+// exit();
 
 // 項目入力のチェック
 // 値が存在しないor空で送信されてきた場合はNGにする
@@ -11,6 +11,7 @@ if (
   !isset($_POST['recipename']) || $_POST['recipename'] == '' ||
   !isset($_POST['category']) || $_POST['category'] == '' ||
   !isset($_POST['howto']) || $_POST['howto'] == '' 
+  // !isset($_POST['foodName0']) || $_POST['foodName0'] == '' 
   ) {
     echo json_encode(["error_msg" => "no input"]);
     exit();
@@ -20,6 +21,14 @@ if (
   $recipename = $_POST['recipename'];
   $category = $_POST['category'];
   $howto = $_POST['howto'];
+  // $foodName0 = $_POST['foodName0'];
+
+for ($i = 0; $i < 5; $i++){
+  $foodName + $i = $_POST['foodName' + $i];
+}
+
+var_dump($_POST);
+exit();
   
   if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
 
@@ -59,6 +68,9 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':recipename', $recipename, PDO::PARAM_STR);
 $stmt->bindValue(':category', $category, PDO::PARAM_INT);
 $stmt->bindValue(':howto', $howto, PDO::PARAM_STR);
+// $stmt->bindValue(':foodName0', $foodName0, PDO::PARAM_STR);
+
+
 $stmt->bindValue(':recipe_image', $fileNameToSave, PDO::PARAM_STR);
 $status = $stmt->execute(); //SQLを実行
 
@@ -68,6 +80,6 @@ if ($status == false) {
   echo json_encode(["error_msg" => "{$error[2]}"]);
   exit();
 } else {
-  header('Location:recipe_read.php');
+  header('Location:recipe.php');
   exit();
 }

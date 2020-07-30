@@ -24,7 +24,7 @@ $(function () {
 
 
     $('.1').on('click', function () {
-        $('.enerc_kcal').hide();
+        $('.enerc_kcal').toggle();
     });
 
     // $('.2').on('click', function () {
