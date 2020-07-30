@@ -55,21 +55,20 @@ if ($status == false) {
 
 <body>
   <a href="recipe_read.php">一覧画面</a>
-  <form action="recipe_update.php" method="POST">
-    料理名: <input type="text" name="recipename" value="<?= $record['recipename'] ?>"><br>
+  <form action="recipe_update.php" method="POST" enctype="multipart/form-data">
+    料理名: <input type=" text" name="recipename" value="<?= $record['recipename'] ?>"><br>
     <div>
       レシピカテゴリ: <select name="category" id="" value="<?= $record['category'] ?>">
         <option value="">選択してください</option>
-        <option value="1">ダイエットレシピ</option>
-        <option value="2">筋トレレシピ</option>
-        <option value="3">骨活レシピ</option>
-        <option value="4">最強トーストレシピ</option>
-        <option value="5">その他</option>
+        <option value="ダイエットレシピ">ダイエットレシピ</option>
+        <option value="筋トレレシピ">筋トレレシピ</option>
+        <option value="骨活レシピ">骨活レシピ</option>
+        <option value="最強トーストレシピ">最強トーストレシピ</option>
+        <option value="その他">その他</option>
       </select>
     </div>
     材料・作り方: <textarea name="howto" id="howto" cols="40" rows="10" value="<?= $record['howto'] ?>"></textarea><br>
-    <div><input type="file" name="recipe_image" accept="image/*" value="<?= $record['recipe_image'] ?>"></div>
-
+    <div><input type="file" name="recipe_image" accept="image/*" capture="camera"></div>
     <input type="hidden" name="id" value="<?= $record['id'] ?>">
     <button>修正</button>
   </form>

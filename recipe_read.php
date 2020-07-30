@@ -34,7 +34,6 @@ if ($status == false) {
     $output .= "<td>{$record["category"]}</td>";
     // $output .= "<td>{$record["howto"]}</td>";
     $output .= "<td><img src='{$record["recipe_image"]}' height=150px></td>";
-  
 
     // edit deleteリンクを追加
     $output .= "<td><a href='recipe_edit.php?id={$record["id"]} '>更新</a></td>";
@@ -48,6 +47,7 @@ if ($status == false) {
   // 今回は以降foreachしないので影響なし
   unset($record);
 }
+
 
 ?>
 
@@ -73,14 +73,26 @@ if ($status == false) {
     </ul>
   </header>
 
+  <form action="recipe_read.php" method="post">
+    <select name="category" id="">
+      <option value="">選択してください</option>
+      <option value="ダイエットレシピ">ダイエットレシピ</option>
+      <option value="筋トレレシピ">筋トレレシピ</option>
+      <option value="骨活レシピ">骨活レシピ</option>
+      <option value="最強トーストレシピ">最強トーストレシピ</option>
+      <option value="その他">その他</option>
+    </select>
+    <input type="submit">
+  </form>
+
   <table class="recipe_read_table">
     <thead>
       <tr>
         <th>レシピ名</th>
-        <th>カテゴリー</th>
+        <th>レシピカテゴリ</th>
         <!-- <th>作り方</th> -->
         <th>写真</th>
-        <th>更新</th>
+        <th>変更</th>
         <th>削除</th>
       </tr>
     </thead>
@@ -89,6 +101,10 @@ if ($status == false) {
     </tbody>
 
     <style>
+      .PC_header {
+        margin-bottom: 30px;
+      }
+
       th,
       td {
         border: solid 1px;

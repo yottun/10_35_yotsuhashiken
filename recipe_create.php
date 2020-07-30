@@ -45,7 +45,7 @@ if (
     exit('ファイルがありません');
   }
 } else {
-  // exit('画像が送信されていません');
+  exit('画像が送信されていません');
 }
 
 // DB接続の設定
@@ -57,7 +57,7 @@ $pdo = connect_to_db();
 $sql = 'INSERT INTO kadai_recipe_table(id, recipename, category, howto, recipe_image) VALUES(NULL, :recipename, :category, :howto, :recipe_image )';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':recipename', $recipename, PDO::PARAM_STR);
-$stmt->bindValue(':category', $category, PDO::PARAM_INT);
+$stmt->bindValue(':category', $category, PDO::PARAM_STR);
 $stmt->bindValue(':howto', $howto, PDO::PARAM_STR);
 $stmt->bindValue(':recipe_image', $fileNameToSave, PDO::PARAM_STR);
 $status = $stmt->execute(); //SQLを実行
