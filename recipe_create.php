@@ -30,6 +30,7 @@ for ($i = 0; $i < 5; $i++){
 var_dump($_POST);
 exit();
   
+
   if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
 
   $uploadedFileName = $_FILES['recipe_image']['name'];
@@ -54,7 +55,7 @@ exit();
     exit('ファイルがありません');
   }
 } else {
-  // exit('画像が送信されていません');
+  exit('画像が送信されていません');
 }
 
 // DB接続の設定
