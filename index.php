@@ -39,7 +39,7 @@ for ($i = 0; $i < 5; $i++) {
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>タイトル</title>
     <meta name="description" content="ディスクリプション">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css?<?= strtotime('now') ?>">
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/style.js"></script>
     <script src="js/search.js"></script>
@@ -54,12 +54,15 @@ for ($i = 0; $i < 5; $i++) {
     <!-- ヘッダー -->
     <header class="PC_header">
         <div class="logo"><img src="img/okomekun.png" alt="" width="100px" height=100px></div>
-        <div class="headertitle">管理栄養士のレシピ</div>
+            <div class="headertitle">
+                <h3>栄養計算ができるレシピサイト</h3>
+            </div>
+        </div>
+
         <ul>
-            <li><a href="index.php">トップページ</a></li>
-            <li><a href="page/todo.php">レシピ一覧</a></li>
-            <li><a href="page/about.html">レシピ検索</a></li>
-            <li><a href="page/company.html">レシピ詳細</a></li>
+            <li><a href="index.php">レシピ新規登録</a></li>
+            <li><a href="recipe_read.php">レシピ一覧</a></li>
+            <li><a href="recipe.php">レシピ表示</a></li>
         </ul>
     </header>
     <!-- メインビジュアル -->

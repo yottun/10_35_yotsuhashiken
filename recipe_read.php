@@ -32,19 +32,23 @@ if ($status == false) {
     $output .= "<tr>";
     $output .= "<td>{$record["recipename"]}</td>";
     $output .= "<td>{$record["category"]}</td>";
-    $output .= "<td>{$record["howto"]}</td>";
-    $output .= "<td>{$record["recipe_image"]}</td>";
+    // $output .= "<td>{$record["howto"]}</td>";
+    $output .= "<td><img src='{$record["recipe_image"]}' height=150px></td>";
+  
 
     // edit deleteリンクを追加
-    $output .= "<td><a href='recipe_edit.php?id={$record["id"]} '>edit</a></td>";
-    $output .= "<td><a href='recipe_delete.php?id={$record["id"]} '>delete</a></td>";
+    $output .= "<td><a href='recipe_edit.php?id={$record["id"]} '>更新</a></td>";
+    $output .= "<td><a href='recipe_delete.php?id={$record["id"]} '>レシピ削除</a></td>";
 
     $output .= "</tr>";
+
+    unset($value);
   }
   // $valueの参照を解除する．解除しないと，再度foreachした場合に最初からループしない
   // 今回は以降foreachしないので影響なし
   unset($record);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -54,39 +58,56 @@ if ($status == false) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DB連携型todoリスト（一覧画面）</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style2.css?<?= strtotime('now') ?>">
 </head>
 
 <body>
   <!-- ヘッダー -->
   <header class="PC_header">
     <div class="logo"><img src="img/okomekun.png" alt="" width="100px" height=100px></div>
-    <div class="headertitle">管理栄養士のレシピ</div>
+    <div class="headertitle">レシピ一覧 </div>
     <ul>
-      <li><a href="index.php">トップページ</a></li>
-      <li><a href="page/todo.php">レシピ一覧</a></li>
-      <li><a href="page/about.html">レシピ検索</a></li>
-      <li><a href="page/company.html">レシピ詳細</a></li>
+      <li><a href="index.php">レシピ新規登録</a></li>
+      <li><a href="recipe_read.php">レシピ一覧</a></li>
+      <li><a href="recipe.php">レシピ表示</a></li>
     </ul>
   </header>
 
-  <fieldset>
-    <legend>DB連携型todoリスト（一覧画面）</legend>
-    <a href="index.php">入力画面</a>
-    <table>
-      <thead>
-        <tr>
-          <th>recipename</th>
-          <th>category</th>
-          <th>howto</th>
-          <th>recipe_image</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?= $output ?>
-      </tbody>
-    </table>
-  </fieldset>
+  <table class="recipe_read_table">
+    <thead>
+      <tr>
+        <th>レシピ名</th>
+        <th>カテゴリー</th>
+        <!-- <th>作り方</th> -->
+        <th>写真</th>
+        <th>更新</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?= $output ?>
+    </tbody>
+
+    <style>
+      th,
+      td {
+        border: solid 1px;
+        padding: 10px;
+      }
+
+      td {
+        width: 170px;
+        /* 幅指定 */
+        height: 30px;
+        /* 高さ指定 */
+        text-align: center;
+      }
+
+      .recipe_read_table {
+        border-collapse: collapse;
+        /* セルの線を重ねる */
+      }
+    </style>
 </body>
 
 </html>
