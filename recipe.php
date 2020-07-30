@@ -45,7 +45,7 @@ if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
     if (is_uploaded_file($tempPathName)) {
         if (move_uploaded_file($tempPathName, $fileNameToSave)) {
             chmod($fileNameToSave, 0644);
-            $img = '<img src="' . $fileNameToSave . '" >';
+            $img = '<img src="' . $fileNameToSave . '" height="250px" >';
         } else {
             exit('保存できませんでした');
         }
@@ -168,7 +168,7 @@ $nacl_eq_result = $_POST['nacl_eq_result'];
             </div>
             <div class="recipe_img1">
                 <?= $img ?>
-                <input type="hidden" methos="POST" name="recipe_image" value="<?= $fileNameToSave ?>">
+                <input type="hidden" methos="POST" name="recipe_image" height="200px" value="<?= $fileNameToSave ?>">
             </div>
             <div class="table2">
                 <h3>作り方</h3>
