@@ -2,61 +2,62 @@
 session_start();
 include('functions.php');
 check_session_id();
-var_dump($_POST);
-exit();
+// var_dump($_POST);
+// exit();
 
 // 項目入力のチェック
 // 値が存在しないor空で送信されてきた場合はNGにする
 if (
   !isset($_POST['recipename']) || $_POST['recipename'] == '' ||
   !isset($_POST['category']) || $_POST['category'] == '' ||
-  !isset($_POST['howto']) || $_POST['howto'] == '' 
+  !isset($_POST['howto']) || $_POST['howto'] == ''
   // !isset($_POST['foodName0']) || $_POST['foodName0'] == '' 
-  ) {
-    echo json_encode(["error_msg" => "no input"]);
-    exit();
-  }
-  
-  // 受け取ったデータを変数に入れる
-  $recipename = $_POST['recipename'];
-  $category = $_POST['category'];
-  $howto = $_POST['howto'];
-  // $foodName0 = $_POST['foodName0'];
+) {
+  echo json_encode(["error_msg" => "no input"]);
+  exit();
+}
+
+// 受け取ったデータを変数に入れる
+$recipename = $_POST['recipename'];
+$category = $_POST['category'];
+$howto = $_POST['howto'];
+$recipe_image = $_POST['recipe_image'];
+// $foodName0 = $_POST['foodName0'];
 
 // for ($i = 0; $i < 5; $i++){
 //   $foodName + $i = $_POST['foodName' + $i];
 // }
 
-var_dump($_POST);
-exit();
-  
+// var_dump($_POST);
+// exit();
 
-  if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
 
-  $uploadedFileName = $_FILES['recipe_image']['name'];
-  $tempPathName = $_FILES['recipe_image']['tmp_name'];
-  $fileDirectoryPath = 'upload/';
+//   if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
 
-  $extension = pathinfo($uploadedFileName, PATHINFO_EXTENSION);
-  $uniqueName = date('YmdHis') . md5(session_id()) . "." . $extension;
-  $fileNameToSave = $fileDirectoryPath . $uniqueName;
+//   $uploadedFileName = $_FILES['recipe_image']['name'];
+//   $tempPathName = $_FILES['recipe_image']['tmp_name'];
+//   $fileDirectoryPath = 'upload/';
 
-  // var_dump($fileNameToSave);
-  // exit();
+//   $extension = pathinfo($uploadedFileName, PATHINFO_EXTENSION);
+//   $uniqueName = date('YmdHis') . md5(session_id()) . "." . $extension;
+//   $fileNameToSave = $fileDirectoryPath . $uniqueName;
 
-  if (is_uploaded_file($tempPathName)) {
-    if (move_uploaded_file($tempPathName, $fileNameToSave)) {
-      chmod($fileNameToSave, 0644);
-      $img = '<img src="' . $fileNameToSave . '" >';
-    } else {
-      exit('保存できませんでした');
-    }
-  } else {
-    exit('ファイルがありません');
-  }
-} else {
-  exit('画像が送信されていません');
-}
+//   // var_dump($fileNameToSave);
+//   // exit();
+
+//   if (is_uploaded_file($tempPathName)) {
+//     if (move_uploaded_file($tempPathName, $fileNameToSave)) {
+//       chmod($fileNameToSave, 0644);
+//       $img = '<img src="' . $fileNameToSave . '" >';
+//     } else {
+//       exit('保存できませんでした');
+//     }
+//   } else {
+//     exit('ファイルがありません');
+//   }
+// } else {
+//   exit('画像が送信されていません');
+// }
 
 // DB接続の設定
 $pdo = connect_to_db();
@@ -67,12 +68,12 @@ $pdo = connect_to_db();
 $sql = 'INSERT INTO kadai_recipe_table(id, recipename, category, howto, recipe_image) VALUES(NULL, :recipename, :category, :howto, :recipe_image )';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':recipename', $recipename, PDO::PARAM_STR);
-$stmt->bindValue(':category', $category, PDO::PARAM_INT);
+$stmt->bindValue(':category', $category, PDO::PARAM_STR);
 $stmt->bindValue(':howto', $howto, PDO::PARAM_STR);
 // $stmt->bindValue(':foodName0', $foodName0, PDO::PARAM_STR);
 
 
-$stmt->bindValue(':recipe_image', $fileNameToSave, PDO::PARAM_STR);
+$stmt->bindValue(':recipe_image', $recipe_image, PDO::PARAM_STR);
 $status = $stmt->execute(); //SQLを実行
 
 // データ登録処理後

@@ -62,7 +62,7 @@ for ($i = 0; $i < 5; $i++) {
         <ul>
             <li><a href="index.php">レシピ新規登録</a></li>
             <li><a href="recipe_read.php">レシピ一覧</a></li>
-            <li><a href="recipe.php">レシピ表示</a></li>
+            <!-- <li><a href="recipe.php">レシピ表示</a></li> -->
         </ul>
     </header>
     <!-- メインビジュアル -->

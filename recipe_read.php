@@ -69,11 +69,11 @@ if ($status == false) {
     <ul>
       <li><a href="index.php">レシピ新規登録</a></li>
       <li><a href="recipe_read.php">レシピ一覧</a></li>
-      <li><a href="recipe.php">レシピ表示</a></li>
+      <!-- <li><a href="recipe.php">レシピ表示</a></li> -->
     </ul>
   </header>
 
-  <form action="recipe_read.php" method="post">
+  <form action="search.php" method="post">
     <select name="category" id="">
       <option value="">選択してください</option>
       <option value="ダイエットレシピ">ダイエットレシピ</option>
@@ -82,7 +82,7 @@ if ($status == false) {
       <option value="最強トーストレシピ">最強トーストレシピ</option>
       <option value="その他">その他</option>
     </select>
-    <input type="submit">
+    <input type="submit" value="検索">
   </form>
 
   <table class="recipe_read_table">

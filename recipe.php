@@ -29,6 +29,34 @@ if (
     exit();
 }
 
+if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
+
+    $uploadedFileName = $_FILES['recipe_image']['name'];
+    $tempPathName = $_FILES['recipe_image']['tmp_name'];
+    $fileDirectoryPath = 'upload/';
+
+    $extension = pathinfo($uploadedFileName, PATHINFO_EXTENSION);
+    $uniqueName = date('YmdHis') . md5(session_id()) . "." . $extension;
+    $fileNameToSave = $fileDirectoryPath . $uniqueName;
+
+    // var_dump($fileNameToSave);
+    // exit();
+
+    if (is_uploaded_file($tempPathName)) {
+        if (move_uploaded_file($tempPathName, $fileNameToSave)) {
+            chmod($fileNameToSave, 0644);
+            $img = '<img src="' . $fileNameToSave . '" >';
+        } else {
+            exit('保存できませんでした');
+        }
+    } else {
+        exit('ファイルがありません');
+    }
+} else {
+    exit('画像が送信されていません');
+}
+
+
 // 受け取ったデータを変数に入れる
 $recipename = $_POST['recipename'];
 $category = $_POST['category'];
@@ -88,20 +116,19 @@ $nacl_eq_result = $_POST['nacl_eq_result'];
 <body>
     <header class="PC_header">
         <div class="logo"><img src="img/okomekun.png" alt="" width="100px" height=100px></div>
-        <div class="headertitle">たまご</div>
+        <div class="headertitle">レシピ確認画面</div>
         <ul>
             <li><a href="index.php">レシピ新規登録</a></li>
             <li><a href="recipe_read.php">レシピ一覧</a></li>
-            <li><a href="recipe.php">レシピ表示</a></li>
+            <!-- <li><a href="recipe.php">レシピ表示</a></li> -->
         </ul>
     </header>
     <form action="recipe_create.php" method="POST">
-        <input type="text" name="category"><?= $category ?>
-        <div>料理名:
-            <h2 name="recipename"><?= $recipename ?></h2>
+        <h3>レシピカテゴリ : <?= $category ?></h3>
+        <input type="hidden" name="category" value="<?= $category ?>">
+        <h3>料理名 : <?= $recipename ?></h3>
+        <input type="hidden" name="recipename" method="POST" value="<?= $recipename ?>">
         </div>
-        <div class="recipe_img1"></div>
-        <img src="img/DSC00021.JPG" alt="" width="60%" height=60%>
         <div class="howto2">
             <div class="table1">
                 <table border="1">
@@ -139,9 +166,14 @@ $nacl_eq_result = $_POST['nacl_eq_result'];
                     </tbody>
                 </table>
             </div>
+            <div class="recipe_img1">
+                <?= $img ?>
+                <input type="hidden" methos="POST" name="recipe_image" value="<?= $fileNameToSave ?>">
+            </div>
             <div class="table2">
                 <h3>作り方</h3>
-                <p name="howto"><?= $howto ?></p>
+                <input type="hidden" name="howto" method="POST" value="<?= $howto ?>">
+                <p><?= $howto ?></p>
             </div>
         </div>
         <h3>栄養価</h3>
