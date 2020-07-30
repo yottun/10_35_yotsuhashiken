@@ -5,30 +5,50 @@ session_start();
 include('functions.php');
 check_session_id();
 
-// 送信確認
-// var_dump($_POST);
-// exit();
-
 // 項目入力のチェック
 // 値が存在しないor空で送信されてきた場合はNGにする
 if (
   !isset($_POST['recipename']) || $_POST['recipename'] == '' ||
   !isset($_POST['category']) || $_POST['category'] == '' ||
-  !isset($_POST['howto']) || $_POST['howto'] == '' ||
-  !isset($_POST['recipe_image']) || $_POST['recipe_image'] == ''
-) {
-  // echo json_encode(["error_msg" => "no input"]);
-  exit('ParamError');
+  !isset($_POST['howto']) || $_POST['howto'] == '' 
+  ) {
+    echo json_encode(["error_msg" => "no input"]);
+    exit();
+  }
+  
+  // 受け取ったデータを変数に入れる
+  $recipename = $_POST['recipename'];
+  $category = $_POST['category'];
+  $howto = $_POST['howto'];
+  
+  if (isset($_FILES['recipe_image']) && $_FILES['recipe_image']['error'] == 0) {
+
+  $uploadedFileName = $_FILES['recipe_image']['name'];
+  $tempPathName = $_FILES['recipe_image']['tmp_name'];
+  $fileDirectoryPath = 'upload/';
+
+  $extension = pathinfo($uploadedFileName, PATHINFO_EXTENSION);
+  $uniqueName = date('YmdHis') . md5(session_id()) . "." . $extension;
+  $fileNameToSave = $fileDirectoryPath . $uniqueName;
+
+  // var_dump($fileNameToSave);
+  // exit();
+
+  if (is_uploaded_file($tempPathName)) {
+    if (move_uploaded_file($tempPathName, $fileNameToSave)) {
+      chmod($fileNameToSave, 0644);
+      $img = '<img src="' . $fileNameToSave . '" >';
+    } else {
+      exit('保存できませんでした');
+    }
+  } else {
+    exit('ファイルがありません');
+  }
+} else {
+  // exit('画像が送信されていません');
 }
 
-// 受け取ったデータを変数に入れる
-$recipename = $_POST['recipename'];
-$category = $_POST['category'];
-$howto = $_POST['howto'];
-$recipe_image = $_POST['recipe_image'];
-
 // DB接続の設定
-// include('functions.php');
 $pdo = connect_to_db();
 
 // データ登録SQL作成
@@ -39,7 +59,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':recipename', $recipename, PDO::PARAM_STR);
 $stmt->bindValue(':category', $category, PDO::PARAM_INT);
 $stmt->bindValue(':howto', $howto, PDO::PARAM_STR);
-$stmt->bindValue(':recipe_image', $recipe_image, PDO::PARAM_STR);
+$stmt->bindValue(':recipe_image', $fileNameToSave, PDO::PARAM_STR);
 $status = $stmt->execute(); //SQLを実行
 
 // データ登録処理後
