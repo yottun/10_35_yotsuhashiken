@@ -1,4 +1,3 @@
-
 $(function () {
 
     // for (let i = 1; i <= 10; i++){
@@ -24,6 +23,13 @@ $(function () {
     // };
 
 
+    $('.1').on('click', function () {
+        $('.enerc_kcal').hide();
+    });
+
+    // $('.2').on('click', function () {
+    //     $('.protein').hide();
+    // });
 
 
 

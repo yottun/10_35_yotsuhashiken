@@ -12,8 +12,8 @@ for ($i = 0; $i < 5; $i++) {
     // $output .= "<td><input id='autocomplete" . $i . "' class='value search foodName" . $i . "' type='text'></td>";
     $output .= "<td><input id='autocomplete{$i}' class='value search foodName{$i}' type='text'></td>";
     $output .= "<td><input class='value g{$i} weight' type='number'>g</td>";
-    $output .= "<td><input class='value enerc_kcal{$i}' type='text' disabled='disabled'></td>";
-    $output .= "<td><input class='value protein{$i}' type='text' disabled='disabled'></td>";
+    $output .= "<td class='enerc_kcal'><input class='value enerc_kcal enerc_kcal{$i}' type='text' disabled='disabled'></td>";
+    $output .= "<td><input class='value protein protein{$i}' type='text' disabled='disabled'></td>";
     $output .= "<td><input class='value lipid{$i}' type='text' disabled='disabled'></td>";
     $output .= "<td><input class='value carbohydrate{$i}' type='text' disabled='disabled'></td>";
     $output .= "<td><input class='value fibtg{$i}' type='text' disabled='disabled'></td>";
@@ -65,7 +65,7 @@ for ($i = 0; $i < 5; $i++) {
     <!-- メインビジュアル -->
     <div class="mainvisual"></div>
     <a href="recipe_read.php">一覧画面</a>
-    <form action="recipe_create.php" method="POST">
+    <form action="recipe_create.php" method="POST" enctype="multipart/form-data">
         料理名: <input type="text" name="recipename"><br>
         <div>
             レシピカテゴリ: <select name="category" id="">
@@ -78,7 +78,7 @@ for ($i = 0; $i < 5; $i++) {
             </select>
         </div>
         材料・作り方: <textarea name="howto" id="howto" cols="40" rows="10"></textarea><br>
-        <div><input type="file" name="recipe_image" accept="image/*"></div>
+        <div><input type="file" name="recipe_image" accept="image/*" capture="camera"></div>
         <button>送信</button>
     </form>
 
@@ -89,13 +89,24 @@ for ($i = 0; $i < 5; $i++) {
             <label for="autocomplete">フリーワード：</label>
             <input id="autocomplete" type="search" placeholder="フリーワード" size="50" maxlengh="50" /> -->
         <!-- <button class="choice">選択</button> -->
-
+        <div>
+            <button class="1">エネルギー</button>
+            <button class="2"></button>
+            <button class="3"></button>
+            <button class="4"></button>
+            <button class="5"></button>
+            <button class="6"></button>
+            <button class="7"></button>
+            <button class="8"></button>
+            <button class="9"></button>
+            <button class="10"></button>
+        </div>
         <table>
             <thead>
                 <tr>
                     <th>食品名</th>
                     <th>g</th>
-                    <th>エネルギー</th>
+                    <th class="enerc_kcal">エネルギー</th>
                     <th>たんぱく質</th>
                     <th>脂質</th>
                     <th>炭水化物</th>
@@ -118,7 +129,7 @@ for ($i = 0; $i < 5; $i++) {
                     <tr>
                         <td>合計</td>
                         <td><input class="value g_result" type="text" disabled='disabled'>g</td>
-                        <td><input class="value enerc_kcal_result" type="text" disabled='disabled'></td>
+                        <td class="enerc_kcal"><input class="value enerc_kcal enerc_kcal_result" type="text" disabled='disabled'></td>
                         <td><input class="value protein_result" type="text" disabled='disabled'></td>
                         <td><input class="value lipid_result" type="text" disabled='disabled'></td>
                         <td><input class="value carbohydrate_result" type="text" disabled='disabled'></td>
